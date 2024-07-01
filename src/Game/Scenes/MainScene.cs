@@ -3,6 +3,8 @@ using Raylib_cs;
 
 public class MainScene : IEntity {
 
+    private const int ScoreTextSize = 50;
+
     private readonly Bracket[] brackets = [
         new(new(16, (Global.WindowHeight - Bracket.BracketHeight) / 2)),
         new(new(Global.WindowWidth - 16 - Bracket.BracketWidth, (Global.WindowHeight - Bracket.BracketHeight) / 2)),
@@ -51,10 +53,14 @@ public class MainScene : IEntity {
     }
 
     public void Render() {
+        float textY = (Global.WindowHeight - ScoreTextSize) / 2;
+        for(int i = 0; i < 2; i++) {
+            float textX = (Global.WindowWidth * (i + 1) / 3) - ScoreTextSize;
+            Raylib.DrawText($"{scores[i]}", (int) textX, (int) textY, ScoreTextSize, Color.Gray);
+        }
         foreach(Bracket bracket in brackets) {
             bracket.Render();
         }
         ball.Render();
-        Raylib.DrawFPS(0, 0);
     }
 }
