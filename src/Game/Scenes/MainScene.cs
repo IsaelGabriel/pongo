@@ -3,11 +3,14 @@ using Raylib_cs;
 
 public class MainScene : IEntity {
 
-    private Bracket player = new Bracket(new(0, 200));
     private Bracket[] brackets = [
         new(new(16, (Global.WindowHeight - Bracket.BracketHeight) / 2)),
         new(new(Global.WindowWidth - 16 - Bracket.BracketWidth, (Global.WindowHeight - Bracket.BracketHeight) / 2)),
     ];
+    private Ball ball = new(new Vector2(
+            Global.WindowWidth - Ball.BallWidth, 
+            Global.WindowHeight - Ball.BallHeight
+        ) / 2);
 
     public void Update() {
         HandlePlayerInput();
@@ -24,6 +27,7 @@ public class MainScene : IEntity {
         foreach(Bracket bracket in brackets) {
             bracket.Render();
         }
+        ball.Render();
         Raylib.DrawFPS(0, 0);
     }
 }
