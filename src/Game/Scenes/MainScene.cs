@@ -14,6 +14,7 @@ public class MainScene : IEntity {
 
     public void Update() {
         HandlePlayerInput();
+        ball.Update();
     }
 
     private void HandlePlayerInput() {
