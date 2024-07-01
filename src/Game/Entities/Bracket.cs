@@ -9,7 +9,10 @@ public class Bracket(Vector2 position) : IEntity {
     public Rectangle rect = new(position, new(BracketWidth, BracketHeight));
     public Vector2 position {
         get=>rect.Position;
-        set=>rect.Position = value;
+        set{
+            value.Y = Math.Clamp(value.Y, 0, Global.WindowHeight - BracketHeight);
+            rect.Position = value;
+        }
     }
     
 

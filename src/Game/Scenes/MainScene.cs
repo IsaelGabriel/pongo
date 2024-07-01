@@ -3,11 +3,11 @@ using Raylib_cs;
 
 public class MainScene : IEntity {
 
-    private Bracket[] brackets = [
+    private readonly Bracket[] brackets = [
         new(new(16, (Global.WindowHeight - Bracket.BracketHeight) / 2)),
         new(new(Global.WindowWidth - 16 - Bracket.BracketWidth, (Global.WindowHeight - Bracket.BracketHeight) / 2)),
     ];
-    private Ball ball = new(new Vector2(
+    private readonly Ball ball = new(new Vector2(
             Global.WindowWidth - Ball.BallWidth, 
             Global.WindowHeight - Ball.BallHeight
         ) / 2);
