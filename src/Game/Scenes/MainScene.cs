@@ -15,6 +15,7 @@ public class MainScene : IEntity {
         ) / 2);
 
     private int[] scores = [0, 0];
+    private readonly Random rng = new();
 
     public void Update() {
         HandlePlayerInput();
@@ -62,6 +63,10 @@ public class MainScene : IEntity {
             Global.WindowWidth - Ball.BallWidth, 
             Global.WindowHeight - Ball.BallHeight
         ) / 2;
+        ball.movement = new(
+            rng.NextInt64() % 2 * 2 - 1,
+            rng.NextInt64() % 2 * 2 - 1
+        );
     }
 
     public void Render() {
