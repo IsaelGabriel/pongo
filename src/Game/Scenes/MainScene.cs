@@ -74,7 +74,7 @@ public class MainScene : IEntity {
 
         float textY = (Global.WindowHeight - ScoreTextSize) / 2;
         for(int i = 0; i < 2; i++) {
-            float textX = (Global.WindowWidth * (i + 1) / 3) - ScoreTextSize;
+            float textX = ((Global.WindowWidth - ScoreTextSize) * (i + 1) / 3);
             Raylib.DrawText($"{scores[i]}", (int) textX, (int) textY, ScoreTextSize, Color.Gray);
         }
         foreach(Bracket bracket in brackets) {
