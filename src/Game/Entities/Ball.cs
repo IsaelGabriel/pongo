@@ -7,6 +7,10 @@ public class Ball(Vector2 position) : IEntity {
     public const int BallHeight = 8;
     public const float DefaultBallSpeed = 200f;
     public Rectangle rect = new(position, new(BallWidth, BallHeight));
+    public Vector2 position { 
+        get => rect.Position;
+        set=>rect.Position = value;
+    }
     public Vector2 movement = new(-1, 1);
 
     public void Update() {

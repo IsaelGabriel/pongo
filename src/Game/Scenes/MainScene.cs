@@ -12,8 +12,11 @@ public class MainScene : IEntity {
             Global.WindowHeight - Ball.BallHeight
         ) / 2);
 
+    private int[] scores = [0, 0];
+
     public void Update() {
         HandlePlayerInput();
+        CheckBallCollision();
         ball.Update();
     }
 
@@ -22,6 +25,29 @@ public class MainScene : IEntity {
         Vector2 newPosition = brackets[0].position;
         newPosition.Y += diffY * Bracket.BracketSpeed * Raylib.GetFrameTime();
         brackets[0].position = newPosition;
+    }
+
+    private void CheckBallCollision() {
+        if(ball.position.X <= 0f) {
+            scores[1]++;
+            ResetBallPosition();
+        }else if(ball.position.X >= Global.WindowWidth - Ball.BallWidth) {
+            scores[0]++;
+            ResetBallPosition();
+        }
+
+        for(int i = 0; i < 2; i++) {
+            if(Raylib.CheckCollisionRecs(brackets[i].rect, ball.rect)) {
+                ball.movement.X = -(i * 2 - 1);
+            }
+        }
+    }
+
+    private void ResetBallPosition() {
+        ball.position = new Vector2(
+            Global.WindowWidth - Ball.BallWidth, 
+            Global.WindowHeight - Ball.BallHeight
+        ) / 2;
     }
 
     public void Render() {
