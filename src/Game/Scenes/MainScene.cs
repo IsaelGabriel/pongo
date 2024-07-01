@@ -65,6 +65,13 @@ public class MainScene : IEntity {
     }
 
     public void Render() {
+        Raylib.DrawLineEx(
+            new( Global.WindowWidth / 2 - 1, 0),
+            new(Global.WindowWidth / 2 - 1, Global.WindowHeight),
+            2,
+            Color.Gray
+        );
+
         float textY = (Global.WindowHeight - ScoreTextSize) / 2;
         for(int i = 0; i < 2; i++) {
             float textX = (Global.WindowWidth * (i + 1) / 3) - ScoreTextSize;
