@@ -18,6 +18,7 @@ public class MainScene : IEntity {
 
     public void Update() {
         HandlePlayerInput();
+        HandleEnemyAI();
         CheckBallCollision();
         ball.Update();
     }
@@ -27,6 +28,17 @@ public class MainScene : IEntity {
         Vector2 newPosition = brackets[0].position;
         newPosition.Y += diffY * Bracket.BracketSpeed * Raylib.GetFrameTime();
         brackets[0].position = newPosition;
+    }
+
+    private void HandleEnemyAI() {
+        float centerY = brackets[1].position.Y + Bracket.BracketHeight / 2;
+        int direction = 1;
+        if(ball.position.Y < centerY) {
+            direction = -1;
+        }
+        Vector2 newPosition = brackets[1].position;
+        newPosition.Y += direction * Bracket.BracketSpeed * Raylib.GetFrameTime() * 0.75f;
+        brackets[1].position = newPosition;
     }
 
     private void CheckBallCollision() {
